@@ -5,27 +5,53 @@ function addElement() {
   const inputValue = document.querySelector('#item');
   const btn = document.querySelector('#grid')
 
+  //mark rows existing after DOm loads
+  demoRow = document.getElementsByClassName('row')
+
+
   btn.addEventListener('click', function (e) {
     const listValue = inputValue.value;
+
     console.log(listValue);
+    console.log(demoRow)
+
+    /* STRATEGY
+    
+    We have a grid of rows with units created at loading
+    
+    ONLY AFTER THAT
+    
+    create new grid
+    
+    */
 
     if (parseInt(inputValue.value) >= 10 && parseInt(inputValue.value) <= 50) {
-      console.log(listValue);
+
+      //after the button with input is pressed we want
+
+      //for each row that exists AKA while a row exists
+      while (demoRow.length > 0) {
+
+        // delete row
+        demoRow[0].remove();
+
+      }
 
 
-      document.removeChild(workingSpace); // OVAJJJJJ
+      //following code will create the new grid
 
 
-      // loop to make 16 rows
+      // loop to make new rows
+
+
       for (let i = 0; i < inputValue.value; i++) {
 
         let temporaryInput = 16;
-
         //define each row
         const row = document.createElement("div");
         row.className = "row"
-        row.style.height = 500 / parseInt(inputValue.value) + "px"
-        row.style.width = "500px"
+        row.style.height = 450 / parseInt(inputValue.value) + "px"
+        row.style.width = "450px"
 
         //define flex
         row.style.display = "flex"
@@ -36,8 +62,10 @@ function addElement() {
         for (let j = 0; j < inputValue.value; j++) {
 
           const pixel = document.createElement("div")
+
           pixel.className = "gridSquare"
-          //pixel.style.width = row.style.width/pixel.style.width;
+
+          //pixel.style.width = row.style.width/pixel.style.width; maybe unnecessary
           pixel.style.height = row.style.height;
           pixel.style.border = "1px solid black"
 
@@ -84,8 +112,8 @@ function addElement() {
     //define each row
     const row = document.createElement("div");
     row.className = "row"
-    row.style.height = 500 / temporaryInput + "px"
-    row.style.width = "500px"
+    row.style.height = 450 / temporaryInput + "px"
+    row.style.width = "450px"
 
     //define flex
     row.style.display = "flex"
